@@ -1,0 +1,23 @@
+#delete-form{
+    display:inline;
+}
+#button-size{
+    float:right;
+    margin-top: 0px;
+    font-size: 10px;
+    font-weight: bolder;
+    background-color: white;
+    color:black;
+    display:inline;
+}
+#text-evenly{
+    text-align: justify;
+    margin-left: 0px;
+}
+#pricing{
+    float:right;
+    color:black;
+    font-size:1rem;
+    font-weight: bolder;
+    margin-top: 2px;
+}
