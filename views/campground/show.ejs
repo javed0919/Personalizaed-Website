@@ -18,17 +18,17 @@
                         <a href="#" id="pricing">INR <%=campground.price%>/night</a>
                     </h5>
                     <p id="text-evenly" ><%=campground.description%></p>
-                    <p  id="delete-form">
-                        <% if(currentUser && campground.author.id.equals(currentUser._id)) {%>
-                            <a class="btn btn-sm btn-warning" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
-                            <form style="display:inline;" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </form>
-                        <% } %>
-                        <em style="float:right;font-weight: bolder;display:inline;">-- Created By <%=campground.author.username %></em>
+                    <p id="delete-form">
+                        <em><strong>--Submitted by: <%= campground.author.username %></strong>, <%= moment(campground.createdAt).fromNow() %></em>
+                        <em style="float: right;">
+                            <% if(currentUser && campground.author.id.equals(currentUser._id)) {%>
+                                <form id="delete-form" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            <% } %>
+                        </em>
+                        <a style="float: right;" class="btn btn-sm btn-warning" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
                     </p>
-                    
-            
                 </div>
             </div>
             <div class="well ">
@@ -38,20 +38,23 @@
                 <hr>
                 <% campground.comments.forEach(function(comment){ %>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-9">
                             <strong><%= comment.author.username %></strong>
                             <p id="text-evenly"> <%= comment.text %></p>
                         </div>
-                        <div class="col-md-2">
-                            <span style="float: right;">10 days Ago</span>
-                            <% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
-                                <form action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-                                    <button id="button-size" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                                <a id="button-size" class="btn btn-sm btn-warning" href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">
-                                    Edit
-                                </a>
-                            <%}%>
+                        <div class="col-md-3">
+                            <span style="float: right;"><%=moment(comment.createdAt).fromNow()%></span>
+                            <hr>
+                            <div>
+                                <% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
+                                    <form action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                        <button id="button-size" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                    <a id="button-size" class="btn btn-sm btn-warning" href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">
+                                        Edit
+                                    </a>
+                                <%}%>
+                            </div>
                         </div>
                     </div>
                 <% }) %>
