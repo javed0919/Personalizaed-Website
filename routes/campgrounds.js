@@ -11,7 +11,7 @@ router.get("/",function(req,res){
             res.redirect("back");
         }
         else{
-            res.render("campground/index",{campgrounds:allcampgrounds});
+            res.render("campground/index",{campgrounds:allcampgrounds,page: 'campgrounds'});
         }
     })
 });
