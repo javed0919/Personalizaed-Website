@@ -11,7 +11,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd; height:45px">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon""></span>
         </button> 
         <a class="navbar-brand" href="/">YelpCamp</a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -34,8 +34,20 @@
           </div>
       </div>
     </nav>
-<hr>
-<hr>
+    <hr>
+    <hr>
+    <div class="container">
+      <%if(error && error.length>0){%>
+      <div class="alert alert-success" role="alert">
+        <%=error%>
+      </div>
+      <%}%>
+      <%if(success && success.length>0){%>
+      <div class="alert alert-warning" role="alert">
+        <%=success%>
+      </div>
+      <%}%>
+    </div>
 
 
     
