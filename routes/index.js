@@ -17,12 +17,15 @@ router.get("/register",function(req,res){
 //handling register form route(post)
 router.post("/register",function(req,res){
     var newUser=new User({username:req.body.username});
+    if(req.body.AdminCode==='javed0919'){
+        newUser.isAdmin=true;
+    }
     User.register(newUser,req.body.password,function(err,user){
         if(err){
             return res.render("register",{error:err.message});
         }
         passport.authenticate("local")(req,res,function(){
-            req.flash("success","Welcome! " + user.username);
+            req.flash("success","Welcome to Javed's production Mr. " + user.username);
             res.redirect("/campgrounds");
         })
     })
@@ -37,7 +40,9 @@ router.get("/login",function(req,res){
 router.post("/login",passport.authenticate("local",
     {
         successRedirect:"/campgrounds",
-        failureRedirect: "/login"
+        failureRedirect: "/login",
+        failureFlash: true,
+        successFlash: 'Welcome to Javed Production!'
     }),function(req,res){
 
 });
